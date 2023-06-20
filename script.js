@@ -91,6 +91,12 @@ window.addEventListener(
         camera.aspect = myCanvas.clientWidth / myCanvas.clientHeight
         camera.updateProjectionMatrix()
         renderer.setSize(myCanvas.clientWidth, myCanvas.clientHeight)
+        myCanvas.style.width = `${
+            window.innerWidth - (window.innerWidth * 5) / 100
+        }px` // update canvas size by window width and reduce it by by percent
+        myCanvas.style.height = `${
+            window.innerHeight - (window.innerHeight * 5) / 100
+        }px` // update canvas size by window height and reduce it by 10%
     },
     false
 )
