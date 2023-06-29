@@ -1,109 +1,156 @@
 @font-face {
-    font-family: "NeueMontreal-Book";
-    src: url(Fonts/NeueMontrealBook/PPNeueMontreal-Book.woff2) format("woff");
+	font-family: 'NeueMontreal-Book';
+	src: url(Fonts/NeueMontrealBook/PPNeueMontreal-Book.woff2) format('woff');
 }
 @font-face {
-    font-family: "NeueMontreal-Thin";
-    src: url(Fonts/NeueMontrealItalicThin/PPNeueMontreal-Thin.woff2)
-        format("woff");
+	font-family: 'NeueMontreal-Thin';
+	src: url(Fonts/NeueMontrealItalicThin/PPNeueMontreal-Thin.woff2)
+		format('woff');
 }
 
-/* ///////////// zero css ///////////// */
+/* 
+    ////////////////////////////////// Zero CSS and set global styling ////////////////////////////////// 
+*/
 * {
-    margin: 0 auto;
-    border: 0;
-    padding: 0;
-    outline: 0;
-    box-sizing: border-box;
-    font-family: "NeueMontreal-Book";
-    color: #fff;
+	margin: 0 auto;
+	border: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: border-box;
+	font-family: 'NeueMontreal-Book';
+	color: #fff;
 }
 h1,
 h2,
-p {
-    margin: 0;
-    padding: 0;
+p,
+li,
+ul,
+a,
+img {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
 }
 
-/* ///////////// body styling ///////////*/
+/* 
+    ////////////////////////////////// Body styling ////////////////////////////////// 
+*/
 body {
-    background-color: #aaa;
-    width: 100%;
-    height: 100%;
-    background-color: #111;
-    /* overflow: hidden; */
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
+/* 
+    ////////////////////////////////// Main styling and animation ////////////////////////////////// 
+*/
 main {
-    width: inherit;
-    height: inherit;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
+	width: 100vw;
+	height: 100vh;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	border: #000 solid 1px;
+	transition: border 7s;
 }
-#myCanvas {
-    vertical-align: middle;
-    margin: 0 auto;
-    background-color: #111;
-    border: #fff solid 1px;
-    /* position: absolute; */
-    width: 95%;
-    height: 90%;
+
+/* ////////////////////////////////// main end of animation styling */
+main.loaded {
+	border: #fff solid 1px;
 }
+/* 
+    ////////////////////////////////// Header styling ////////////////////////////////// 
+*/
 .site-header {
-    color: #fff;
-    padding: 1rem;
-    position: absolute;
-    z-index: 10;
-    left: 4%;
-    top: 6%;
-    /* mix-blend-mode: difference; */
-    /* background-color: #111; */
-    /* backdrop-filter: blur(1px); */
-    /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); */
-    gap: 10rem;
+	padding: 1rem;
+	position: absolute;
+	left: 0.8rem;
+	top: 0.1rem;
+	overflow: hidden;
 }
 h1 {
-    font-family: "NeueMontreal-Thin";
-    font-size: 4rem;
-    color: #fff;
-    font-weight: 100;
+	font-family: 'NeueMontreal-Thin';
+	font-size: 4rem;
+	font-weight: 100;
 }
-h2 {
-    margin-bottom: 0.25rem;
+.site-header p,
+.site-header li {
+	margin: 0.5rem 0 0.25rem;
 }
-hr {
-    margin: 2rem 0 1rem;
-    border-top: 1px #fff solid;
-}
-ul {
-    margin: 0.5rem 0;
-    list-style: none;
-}
-li {
-    margin: 1rem 0;
-}
-a {
-    text-decoration: none;
-}
+
+/* ////////////////////////////////// Logo and link styling */
 .logo {
-    margin: 0;
+	transform: translateX(150%); /* start from the right off-screen */
+	transition: transform 2s ease-in-out, color 4s ease-in-out; /* 2 seconds animation for transform and 5 second animation for color */
+	color: rgba(255, 255, 255, 0); /* start with transparent color */
 }
+.link {
+	transform: translateX(-100%); /* start from the left off-screen */
+	transition: transform 2s ease-in-out; /* 2 seconds animation for both transform */
+	color: rgba(255, 255, 255, 0); /* start with transparent color */
+}
+.link a {
+	transition: color 4s ease-in-out;
+	color: rgba(255, 255, 255, 0);
+}
+
+/* ////////////////////////////////// Logo and link end of animation styling */
+.logo.slide-in,
+.link.slide-in {
+	transform: translateX(0); /* end at the original position */
+	color: rgba(255, 255, 255, 1); /* fully opaque color */
+}
+.link.slide-in a {
+	color: rgba(255, 255, 255, 1); /* fully opaque color */
+}
+
+/* ////////////////////////////////// hr styling */
+hr {
+	border: none;
+	margin: 0.75rem 0;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0); /* start with transparent color */
+	transition: background-color 5s ease-in-out, transform 5s; /* 5 second animation for background-color */
+	transform: rotateY(45deg);
+}
+
+/* ////////////////////////////////// hr end of animation styling */
+hr.fade-in {
+	background-color: rgba(255, 255, 255, 1); /* fully opaque color */
+	transform: rotateY(0deg);
+}
+
+/* 
+    ////////////////////////////////// External Links styling ////////////////////////////////// 
+*/
 .ext-links {
-    color: #fff;
-    padding: 1rem;
-    position: absolute;
-    z-index: 10;
-    right: 1%;
-    bottom: 6%;
-    display: flex;
-    align-items: center;
-    transform: rotate(270deg);
+	padding: 1rem;
+	height: 5.5rem;
+	position: absolute;
+	right: -2.5rem;
+	bottom: 2.4rem;
+	display: flex;
+	align-items: center;
+	transform: translateX(100%) rotate3d(1, 1, 1, 90deg);
+	transition: transform 4.5s ease-in-out, opacity 6.3s ease-in-out;
+	opacity: 0;
 }
+
+/* ////////////////////////////////// External links end of animation styling */
+.ext-links.slide-in {
+	transform: translateX(0) rotate(-90deg);
+	opacity: 100;
+}
+
+/* ////////////////////////////////// Icon styling */
 #github {
-    height: 2.5rem;
+	height: 2.5rem;
 }
 #linkedin {
-    height: 5rem;
+	height: 5rem;
 }
