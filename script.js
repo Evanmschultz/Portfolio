@@ -96,7 +96,7 @@ let camera = new THREE.PerspectiveCamera(
 	0.1,
 	50
 )
-camera.position.z = 30
+camera.position.z = 22
 
 // Set up the renderer. This will be called later to render scene with the camera setup above
 let renderer = new THREE.WebGLRenderer({
@@ -109,7 +109,7 @@ renderer.setClearColor(0x111111, 1)
 scene.background = new THREE.Color('#000')
 
 // Setting up a light
-let light = new THREE.PointLight('#9BC995', 1, 1000)
+let light = new THREE.PointLight('#9BC995', 1, 10000)
 light.position.set(0, 0, 0)
 scene.add(light)
 
@@ -195,10 +195,7 @@ function lorenz() {
 	let f = 9.9
 	let g = 1
 	let t = 0.001
-	for (let i = 0; i < 100000; i++) {
-		let x1 = x
-		let y1 = y
-		let z1 = z
+	for (i = 0; i < 100000; i++) {
 		x = x - t * a * x + t * y * y - t * z * z + t * a * f
 		y = y - t * y + t * x * y - t * b * x * z + t * g
 		z = z - t * z + t * b * x * y + t * x * z
