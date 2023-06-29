@@ -115,7 +115,7 @@ hr {
 	margin: 0.75rem 0;
 	height: 1px;
 	background-color: rgba(255, 255, 255, 0); /* start with transparent color */
-	transition: background-color 5s ease-in-out, transform 5s; /* 5 second animation for background-color */
+	transition: background-color 5s ease-in-out, transform 5s ease-in-out; /* 5 second animation for background-color */
 	transform: rotateY(45deg);
 }
 
