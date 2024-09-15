@@ -11,6 +11,9 @@ const extLinks = document.querySelector('.ext-links')
 const myCanvas = document.getElementById('myCanvas')
 const main = document.querySelector('main')
 
+// Declare Three.js variables
+let scene, camera, renderer, mixer, light, group, pointCloud;
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /* Logic for text and link animation on page load */
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +32,7 @@ window.onload = function () {
 	logoElements.forEach((item, index) => {
 		setTimeout(() => {
 			item.classList.add('slide-in')
-		}, index * iterativeDelay + initialDelay) // setTimeout based on index
+		}, index * iterativeDelay + initialDelay)
 	})
 
 	// Loop through node list header/link elements and animate from top to bottom
@@ -48,6 +51,9 @@ window.onload = function () {
 	setTimeout(() => {
 		extLinks.classList.add('slide-in')
 	}, iterativeDelay * 3)
+
+    // Set up Three.js scene after canvas size is set
+    setupThreeJS()
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,15 +63,15 @@ window.onload = function () {
 window.addEventListener(
 	'resize',
 	function () {
+		// Resize main and resize canvas off of main
+		setCanvasSize()
+
 		// Adjust camera
 		camera.aspect = myCanvas.clientWidth / myCanvas.clientHeight
 		camera.updateProjectionMatrix()
 
 		// Resize the renderer
 		renderer.setSize(myCanvas.clientWidth, myCanvas.clientHeight)
-
-		// Resize main and resize canvas off of main
-		setCanvasSize()
 	},
 	false
 )
@@ -86,70 +92,74 @@ function setCanvasSize() {
 /* Lorenz attractor necessary logic and animation settings */
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Set up the scene
-let scene = new THREE.Scene()
+function setupThreeJS() {
+    // Set up the scene
+    scene = new THREE.Scene()
 
-// Set up a camera
-let camera = new THREE.PerspectiveCamera(
-	100,
-	myCanvas.clientWidth / myCanvas.clientHeight,
-	0.1,
-	50
-)
-camera.position.z = 34
+    // Set up a camera
+    camera = new THREE.PerspectiveCamera(
+        100,
+        myCanvas.clientWidth / myCanvas.clientHeight,
+        0.1,
+        50
+    )
+    camera.position.z = 34
 
-// Set up the renderer. This will be called later to render scene with the camera setup above
-let renderer = new THREE.WebGLRenderer({
-	antialias: true,
-	canvas: myCanvas // Pass the canvas element to the renderer
-})
-renderer.setPixelRatio(window.devicePixelRatio)
-renderer.setSize(myCanvas.clientWidth, myCanvas.clientHeight)
-renderer.setClearColor(0x111111, 1)
-scene.background = new THREE.Color('#000')
+    // Set up the renderer
+    renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        canvas: myCanvas
+    })
+    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setSize(myCanvas.clientWidth, myCanvas.clientHeight)
+    renderer.setClearColor(0x111111, 1)
+    scene.background = new THREE.Color('#000')
 
-// Setting up a light
-let light = new THREE.PointLight('#9BC995', 1, 10000)
-light.position.set(0, 0, 0)
-scene.add(light)
+    // Setting up a light
+    light = new THREE.PointLight('#9BC995', 1, 10000)
+    light.position.set(0, 0, 0)
+    scene.add(light)
 
-// Setting up a group to hold the items we will be creating together
-let group = new THREE.Group()
+    // Setting up a group to hold the items we will be creating together
+    group = new THREE.Group()
 
-/* 
-    Array curve holds the positions of points generated from a lorenz equation; 
-    lorenz function below generates the points and returns an array of points 
+    /* 
+        Array curve holds the positions of points generated from a lorenz equation; 
+        lorenz function below generates the points and returns an array of points 
     */
-let arrayCurve = lorenz()
+    let arrayCurve = lorenz()
 
-// Generating the geometry
-let curve = new THREE.CatmullRomCurve3(arrayCurve)
-let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(100000))
+    // Generating the geometry
+    let curve = new THREE.CatmullRomCurve3(arrayCurve)
+    let geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(100000))
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-/* Set up point cloud */
-//////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    /* Set up point cloud */
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Set values defining point material/appearance
-let pointCloudMaterial = new THREE.PointsMaterial({
-	color: new THREE.Color(0x999ccc),
-	transparent: true,
-	size: 0.05,
-	blending: THREE.AdditiveBlending
-})
+    // Set values defining point material/appearance
+    let pointCloudMaterial = new THREE.PointsMaterial({
+        color: new THREE.Color(0x999ccc),
+        transparent: true,
+        size: 0.05,
+        blending: THREE.AdditiveBlending
+    })
 
-// Set up point cloud
-let pointCloud = new THREE.Points(geometry, pointCloudMaterial)
-pointCloud.sizeAttenuation = true
-pointCloud.sortPoints = true
-group.add(pointCloud)
-scene.add(group)
+    // Set up point cloud
+    pointCloud = new THREE.Points(geometry, pointCloudMaterial)
+    pointCloud.sizeAttenuation = true
+    pointCloud.sortPoints = true
+    group.add(pointCloud)
+    scene.add(group)
+
+    setupAnimation()
+    requestAnimationFrame(render)
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /* New animation setup using Three.js AnimationMixer */
 //////////////////////////////////////////////////////////////////////////////////////////////////
 
-let mixer;
 const animationSpeed = 0.5; // Adjust this value to control overall animation speed
 const clock = new THREE.Clock();
 
@@ -215,28 +225,6 @@ function render() {
     renderer.render(scene, camera);
     requestAnimationFrame(render);
 }
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////
-/* Render function */
-//////////////////////////////////////////////////////////////////////////////////////////////////
-
-function render() {
-    const delta = clock.getDelta();
-    
-    if (mixer) {
-        mixer.update(delta * animationSpeed);
-    }
-
-    updatePointCloud();
-
-    renderer.render(scene, camera);
-    requestAnimationFrame(render);
-}
-
-// Setup and start the animation
-setupAnimation();
-requestAnimationFrame(render);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 /* Lorenz attractor function */
