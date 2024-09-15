@@ -97,7 +97,9 @@ h1 {
 	margin: 0.5rem 0 0.25rem;
 }
 
-/* ////////////////////////////////// Logo and link styling */
+/* 
+	////////////////////////////////// Logo and link styling ////////////////////////////////// 
+*/
 .logo {
 	transform: translateX(150%); /* start from the right off-screen */
 	transition: transform 2s ease-in-out, color 4s ease-in-out; /* 2 seconds animation for transform and 5 second animation for color */
@@ -169,7 +171,9 @@ hr.fade-in {
 	height: 5rem;
 }
 
-/* ////////////////////////////////// Modal styling */
+/* 
+	////////////////////////////////// Modal styling ////////////////////////////////// 
+*/
 .modal {
 	display: none;
 	position: fixed;
@@ -195,6 +199,8 @@ hr.fade-in {
 	transform: translateY(-50px);
 	transition: transform 0.3s ease;
 	font-family: 'NeueMontreal-Book';
+	height: fit-content;
+	place-self: center;	
 }
 
 .modal-content h2 {
@@ -202,6 +208,7 @@ hr.fade-in {
 	font-size: 2.5rem;
 	font-weight: 100;
 	margin-bottom: 1rem;
+	
 }
 
 .close-button {
@@ -220,6 +227,17 @@ hr.fade-in {
 	cursor: pointer;
 }
 
+/* ////////////////////////////////// About modal styling */
+.about-container {
+    padding: 20px;
+}
+
+.about-container p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* ////////////////////////////////// Projects modal styling */
 .projects-container {
 	max-height: 70vh;
 	overflow-y: auto;
@@ -294,7 +312,7 @@ hr.fade-in {
     margin-top: 10px;
 }
 
-/* Contact Modal Styles */
+/* ////////////////////////////////// Contact Modal Styles */
 .contact-container {
 	padding: 20px;
 }
@@ -324,7 +342,9 @@ hr.fade-in {
 	border-color: #000;
 }
 
-/* Mobile-specific styles */
+/* 
+	////////////////////////////////// Mobile-specific styles ////////////////////////////////// 
+*/
 @media screen and (max-width: 600px) {
 	.modal-content {
 		width: 95%;
