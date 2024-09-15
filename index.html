@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="static/css/style.css" />
 		<link
 			rel="shortcut icon"
 			href="Assets/favicon.png"
@@ -20,25 +20,23 @@
 				<!-- Title and logo section -->
 				<h1 class="logo">Postulate</h1>
 				<h2 class="logo">Evan Schultz</h2>
-				<p class="logo">Software Engineering student</p>
+				<p class="logo">Software Engineer</p>
 				<hr />
 
 				<!-- Navigation/links -->
 				<nav>
 					<ul>
 						<li class="link">
-							<a href="https://github.com/Evanmschultz">
-								github
-							</a>
+							<a href="#" id="projects-button">projects</a>
 						</li>
 
 						<li class="link">
-							<a href="#"> contact </a>
+							<a href="#" id="contact-button"> contact </a>
 						</li>
 
 						<li class="link">
-							<a href="https://github.com/Evanmschultz/Portfolio">
-								site repo
+							<a href="https://github.com/evanmschultz/Portfolio/blob/main/animation.js">
+								site's lorenz js
 							</a>
 						</li>
 					</ul>
@@ -48,7 +46,7 @@
 			<!-- External links -->
 			<ul class="ext-links">
 				<li class="ext-link">
-					<a href="#">
+					<a href="https://github.com/evanmschultz">
 						<img
 							src="Assets/github.png"
 							alt="github-logo"
@@ -58,7 +56,7 @@
 				</li>
 
 				<li class="ext-link">
-					<a href="#">
+					<a href="https://www.linkedin.com/in/evanmschultz/">
 						<img
 							src="Assets/linkedin.png"
 							alt="linkedin-logo"
@@ -70,9 +68,70 @@
 
 			<!-- Canvas to display animation -->
 			<canvas id="myCanvas" class="canvas"></canvas>
-
-			<!-- Script tag -->
-			<script src="script.js"></script>
 		</main>
+
+		<!-- Projects modal -->
+		<div id="projects-modal" class="modal">
+			<div class="modal-content">
+			  <span class="close-button">&times;</span>
+			  <h2>Projects</h2>
+			  <hr class="fade-in"/>
+			  <div class="projects-container">
+				<a href="https://github.com/evanmschultz/fenec">
+					<div class="project-card">
+						<h3>Fenec</h3>
+						<hr class="fade-in"/>
+						<p>
+							Fenec is an experimental Python library aimed at enhancing code comprehension and interaction through the use of Large Language Models (LLMs). 
+							It's like having a tiny, incompetent, know-it-all fox rummaging through your codebase. Occasionally, it provides insights—either through its 
+							genuine insights or its absurd answers.
+						</p>
+					</div>
+				</a>
+				<a href="https://github.com/evanmschultz/conag">
+					<div class="project-card">
+						<h3>conag</h3>
+						<hr class="fade-in"/>
+						<p>
+							conag is a simple rust based, macOS-only CLI tool designed to aggregate the contents of a project directory. It is useful for collecting code and documentation to use as context with UI based Large Language Models (LLMs).
+						</p>
+					</div>
+				</a>
+				<a href="https://github.com/evanmschultz/portfolio">
+					<div class="project-card with-image">
+						<img src="Assets/PostulateChat.GIF" alt="Postulate Chat">
+						<div class="project-card-content">
+							<h3>Postulate Chat</h3>
+							<hr class="fade-in"/>
+							<p>
+								Postulate Chat is an AI chatbot application built using Flask. It employs Langchain for conversational logic, ChromaDB for document storage, and OpenAI for natural language processing. The application comes with login and registration features, protecting the chat routes.
+							</p>
+						</div>
+					</div>
+				</a>
+			  </div>
+			</div>
+		</div>
+
+		<!-- Contact modal -->
+		<div id="contact-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-button">&times;</span>
+				<h2>Contact</h2>
+				<hr class="fade-in"/>
+				<div class="contact-container">
+					<div class="email-link-container">
+						<p>Feel free to reach out to me at:</p>
+						<a href="mailto:evan@postulate.tech" class="email-link">evan@postulate.tech</a>
+					</div>
+					<hr class="fade-in"/>
+					<p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Script tag -->
+		<script src="static/js/animation.js"></script>
+		<script src="static/js/script.js"></script>
 	</body>
 </html>
