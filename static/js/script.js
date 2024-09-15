@@ -1,9 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
-	const projectsModal = document.getElementById('projects-modal');
-	const contactModal = document.getElementById('contact-modal');
-	const projectsBtn = document.getElementById('projects-button');
-	const contactBtn = document.getElementById('contact-button');
-	const closeButtons = document.getElementsByClassName('close-button');
+    const canvas = document.getElementById('myCanvas');
+    const projectsModal = document.getElementById('projects-modal');
+    const contactModal = document.getElementById('contact-modal');
+    const projectsBtn = document.getElementById('projects-button');
+    const contactBtn = document.getElementById('contact-button');
+    const closeButtons = document.getElementsByClassName('close-button');
+    
+    // Function to reveal canvas
+    function revealCanvas() {
+        canvas.classList.add('visible');
+    }
+
+    // Reveal canvas immediately after page load
+    revealCanvas();
+
+    // Or, Reveal canvas after a short delay, in milliseconds, if the above doesn't work
+    // setTimeout(revealCanvas, 300);
 	
 	function openModal(modal) {
 		modal.style.display = 'block';
