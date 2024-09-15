@@ -87,4 +87,4 @@ Your support is greatly appreciated!
 
 ## Contact
 
-For any queries or suggestions, please reach out to [your-email@example.com](mailto:your-email@example.com).
+For any queries or suggestions, please reach out to [evan@postulate.tech](mailto:evan@postulate.tech).
