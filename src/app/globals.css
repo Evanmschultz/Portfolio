@@ -37,8 +37,7 @@ body {
 	width: 100svw;
 	height: 100svh;
 	background-color: #000;
-	display: flex;
-	justify-content: center;
+	display: grid;
 	align-items: center;
 }
 /* 
@@ -54,6 +53,7 @@ main {
 	position: relative;
 	border: #000 solid 1px;
 	transition: border 7s;
+	align-self: center;
 }
 
 /* 
@@ -342,7 +342,16 @@ hr.fade-in {
 /* 
 	////////////////////////////////// Mobile-specific styles ////////////////////////////////// 
 */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
+	body {
+		height: calc(100vh - 12vh);
+		height: 100svh;
+	}
+	main {
+		height: 93%;
+		width: 85%;
+		/* align-self: center; */
+	}
 	.modal-content {
 		width: 95%;
 		margin: 5% auto;
