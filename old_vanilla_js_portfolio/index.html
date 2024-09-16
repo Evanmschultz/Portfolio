@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+		<link rel="stylesheet" href="static/css/style.css" />
+		<link
+			rel="shortcut icon"
+			href="Assets/favicon.png"
+			type="image/x-icon"
+		/>
+
+		<title>Postulate</title>
+	</head>
+	<body>
+		<main>
+			<header class="site-header">
+				<!-- Title and logo section -->
+				<h1 class="logo">Postulate</h1>
+				<h2 class="logo">Evan Schultz</h2>
+				<p class="logo">Software Engineer</p>
+				<hr />
+
+				<!-- Navigation/links -->
+				<nav>
+					<ul>
+						<li class="link">
+							<a href="#" id="about-button">about</a>
+						</li>
+						<li class="link">
+							<a href="#" id="projects-button">projects</a>
+						</li>
+
+						<li class="link">
+							<a href="#" id="contact-button"> contact </a>
+						</li>
+
+						<li class="link">
+							<a href="https://github.com/evanmschultz/Portfolio/blob/main/static/js/animation.js">
+								site's lorenz js
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+
+			<!-- External links -->
+			<ul class="ext-links">
+				<li class="ext-link">
+					<a href="https://github.com/evanmschultz">
+						<img
+							src="Assets/github.png"
+							alt="github-logo"
+							id="github"
+						/>
+					</a>
+				</li>
+
+				<li class="ext-link">
+					<a href="https://www.linkedin.com/in/evanmschultz/">
+						<img
+							src="Assets/linkedin.png"
+							alt="linkedin-logo"
+							id="linkedin"
+						/>
+					</a>
+				</li>
+			</ul>
+
+			<!-- Canvas to display animation -->
+			<canvas id="myCanvas" class="canvas"></canvas>
+		</main>
+
+		<!-- About modal -->
+		<div id="about-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-button">&times;</span>
+				<h2>About - Evan Schultz</h2>
+				<hr class="fade-in"/>
+				<div class="about-container">
+					<p>I am a full-stack software engineer with a passion for backend development and a knack for solving complex problems.</p>
+					
+					<p>My journey into software engineering is rooted in my background in physics, which I studied at Embry-Riddle in Prescott, Arizona. This foundation has shaped my approach to coding, allowing me to leverage analytical thinking and problem-solving skills to create effective solutions for novel challenges.</p>
+					
+					<p>While I'm proficient in various languages including HTML, CSS, JavaScript, TypeScript, Python, Go, and Rust, my true coding love lies in Python. That said, I have a growing appreciation for strongly typed languages, which aligns with my commitment to writing robust and maintainable code.</p>
+					
+					<p>My experience spans a wide range of technologies and frameworks, including FastAPI, Flask, Gin, Langchain, LlamaIndex, and Next.js. I'm particularly passionate about AI (especially Large Language Models), API development, and creating developer tools that empower other engineers.</p>
+					
+					<p>As a co-founder of Dlivr, a SaaS startup that provided delivery and direct marketing solutions for restaurants, I honed my skills in adaptive fast development and learned valuable lessons about product-market fit. This experience fueled my aspiration to help dynamic, early-stage startups bring innovative solutions to life.</p>
+					
+					<p>My approach to software engineering is guided by principles such as Test-Driven Development (TDD), extensible design, and effective communication. I believe in writing clean, efficient code that not only solves immediate problems but also anticipates future needs. I'm also a strong advocate for continuous learning and staying updated with the latest industry trends.</p>
+					
+					<p>Outside of coding, I'm deeply interested in mathematics and physics, which often inspire my problem-solving strategies in software development. I'm also an active contributor to open-source projects, having made contributions to ChromaDB and Langchain, and I enjoy building my own open-source solutions.</p>
+					
+					<p>I'm always excited about new challenges and opportunities to create impactful software solutions. If you're working on a project that aims to push boundaries and make a difference, I'd love to connect!</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Projects modal -->
+		<div id="projects-modal" class="modal">
+			<div class="modal-content">
+			  <span class="close-button">&times;</span>
+			  <h2>Projects</h2>
+			  <hr class="fade-in"/>
+			  <div class="projects-container">
+				<a href="https://github.com/evanmschultz/fenec">
+					<div class="project-card">
+						<h3>Fenec</h3>
+						<hr class="fade-in"/>
+						<p>
+							Fenec is an experimental Python library aimed at enhancing code comprehension and interaction through the use of Large Language Models (LLMs). 
+							It's like having a tiny, incompetent, know-it-all fox rummaging through your codebase. Occasionally, it provides insights—either through its 
+							genuine insights or its absurd answers.
+						</p>
+					</div>
+				</a>
+				<a href="https://github.com/evanmschultz/conag">
+					<div class="project-card">
+						<h3>conag</h3>
+						<hr class="fade-in"/>
+						<p>
+							conag is a simple rust based, macOS-only CLI tool designed to aggregate the contents of a project directory. It is useful for collecting code and documentation to use as context with UI based Large Language Models (LLMs).
+						</p>
+					</div>
+				</a>
+				<a href="https://github.com/evanmschultz/portfolio">
+					<div class="project-card with-image">
+						<img src="Assets/PostulateChat.GIF" alt="Postulate Chat">
+						<div class="project-card-content">
+							<h3>Postulate Chat</h3>
+							<hr class="fade-in"/>
+							<p>
+								Postulate Chat is an AI chatbot application built using Flask. It employs Langchain for conversational logic, ChromaDB for document storage, and OpenAI for natural language processing. The application comes with login and registration features, protecting the chat routes.
+							</p>
+						</div>
+					</div>
+				</a>
+			  </div>
+			</div>
+		</div>
+
+		<!-- Contact modal -->
+		<div id="contact-modal" class="modal">
+			<div class="modal-content">
+				<span class="close-button">&times;</span>
+				<h2>Contact</h2>
+				<hr class="fade-in"/>
+				<div class="contact-container">
+					<div class="email-link-container">
+						<p>Feel free to reach out to me at:</p>
+						<a href="mailto:evan@postulate.tech" class="email-link">evan@postulate.tech</a>
+					</div>
+					<hr class="fade-in"/>
+					<p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Script tag -->
+		<script src="static/js/animation.js"></script>
+		<script src="static/js/script.js"></script>
+	</body>
+</html>

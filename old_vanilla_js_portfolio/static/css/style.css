@@ -1,0 +1,381 @@
+@font-face {
+	font-family: 'NeueMontreal-Book';
+	src: url(../../Fonts/NeueMontrealBook/PPNeueMontreal-Book.woff2) format('woff');
+}
+@font-face {
+	font-family: 'NeueMontreal-Thin';
+	src: url(../../Fonts/NeueMontrealItalicThin/PPNeueMontreal-Thin.woff2)
+		format('woff');
+}
+
+/* 
+    ////////////////////////////////// Zero CSS and set global styling ////////////////////////////////// 
+*/
+* {
+	margin: 0 auto;
+	border: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: border-box;
+	font-family: 'NeueMontreal-Book';
+	color: #fff;
+}
+h1,
+h2,
+p,
+li,
+ul,
+a,
+img {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+/* 
+    ////////////////////////////////// Body styling ////////////////////////////////// 
+*/
+body {
+	width: 100vw;
+	height: 100vh;
+	width: 100svw;
+	height: 100svh;
+	background-color: #000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* 
+    ////////////////////////////////// Main styling and animation ////////////////////////////////// 
+*/
+main {
+	width: 100vw;
+	height: 100vh;
+	margin: 0 auto;
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	border: #000 solid 1px;
+	transition: border 7s;
+}
+
+/* 
+	////////////////////////////////// Canvas styling ////////////////////////////////// 
+*/
+#myCanvas {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#myCanvas.visible {
+    opacity: 1;
+}
+
+/* ////////////////////////////////// main end of animation styling */
+main.loaded {
+	border: #fff solid 1px;
+}
+/* 
+    ////////////////////////////////// Header styling ////////////////////////////////// 
+*/
+.site-header {
+	padding: 1rem;
+	position: absolute;
+	left: 0.8rem;
+	top: 0.1rem;
+	overflow: hidden;
+}
+h1 {
+	font-family: 'NeueMontreal-Thin';
+	font-size: 4rem;
+	font-weight: 100;
+}
+.site-header p,
+.site-header li {
+	margin: 0.5rem 0 0.25rem;
+}
+
+/* 
+	////////////////////////////////// Logo and link styling ////////////////////////////////// 
+*/
+.logo {
+	transform: translateX(150%); /* start from the right off-screen */
+	transition: transform 2s ease-in-out, color 4s ease-in-out; /* 2 seconds animation for transform and 5 second animation for color */
+	color: rgba(255, 255, 255, 0); /* start with transparent color */
+}
+.link {
+	transform: translateX(-100%); /* start from the left off-screen */
+	transition: transform 2s ease-in-out; /* 2 seconds animation for both transform */
+	color: rgba(255, 255, 255, 0); /* start with transparent color */
+}
+.link a {
+	transition: color 4s ease-in-out;
+	color: rgba(255, 255, 255, 0);
+}
+
+/* ////////////////////////////////// Logo and link end of animation styling */
+.logo.slide-in,
+.link.slide-in {
+	transform: translateX(0); /* end at the original position */
+	color: rgba(255, 255, 255, 1); /* fully opaque color */
+}
+.link.slide-in a {
+	color: rgba(255, 255, 255, 1); /* fully opaque color */
+}
+
+/* ////////////////////////////////// hr styling */
+hr {
+	border: none;
+	margin: 0.75rem 0;
+	height: 1px;
+	background-color: rgba(255, 255, 255, 0); /* start with transparent color */
+	transition: background-color 5s ease-in-out, transform 5s ease-in-out; /* 5 second animation for background-color */
+	transform: rotateY(45deg);
+}
+
+/* ////////////////////////////////// hr end of animation styling */
+hr.fade-in {
+	background-color: rgba(255, 255, 255, 1); /* fully opaque color */
+	transform: rotateY(0deg);
+}
+
+/* 
+    ////////////////////////////////// External Links styling ////////////////////////////////// 
+*/
+.ext-links {
+	padding: 1rem;
+	height: 5.5rem;
+	position: absolute;
+	right: -2.5rem;
+	bottom: 2.4rem;
+	display: flex;
+	align-items: center;
+	transform: translateX(100%) rotate3d(1, 1, 1, 90deg);
+	transition: transform 4.5s ease-in-out, opacity 6.3s ease-in-out;
+	opacity: 0;
+}
+
+/* ////////////////////////////////// External links end of animation styling */
+.ext-links.slide-in {
+	transform: translateX(0) rotate(-90deg);
+	opacity: 100;
+}
+
+/* ////////////////////////////////// Icon styling */
+#github {
+	height: 2.5rem;
+}
+#linkedin {
+	height: 5rem;
+}
+
+/* 
+	////////////////////////////////// Modal styling ////////////////////////////////// 
+*/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.7);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.modal-content {
+	background-color: rgba(0, 0, 0, 0.7);
+	margin: 10% auto;
+	padding: 20px;
+	width: 80%;
+	max-width: 700px;
+	border-radius: 10px;
+	position: relative;
+	transform: translateY(-50px);
+	transition: transform 0.3s ease;
+	font-family: 'NeueMontreal-Book';
+	height: fit-content;
+	place-self: center;	
+}
+
+.modal-content h2 {
+	font-family: 'NeueMontreal-Thin';
+	font-size: 2.5rem;
+	font-weight: 100;
+	margin-bottom: 1rem;
+	
+}
+
+.close-button {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	cursor: pointer;
+	font-family: 'NeueMontreal-Book';
+}
+
+.close-button:hover,
+.close-button:focus {
+	color: #fff;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* ////////////////////////////////// About modal styling */
+.about-container {
+    padding: 20px;
+}
+
+.about-container p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* ////////////////////////////////// Projects modal styling */
+.projects-container {
+	max-height: 70vh;
+	overflow-y: auto;
+	padding: 10px;
+}
+
+.project-item {
+	margin-bottom: 1.5rem;
+}
+
+.project-item h3 {
+	font-family: 'NeueMontreal-Thin';
+	font-size: 1.8rem;
+	font-weight: 100;
+	margin-bottom: 0.5rem;
+}
+
+.project-item p {
+	font-family: 'NeueMontreal-Book';
+	font-size: 1rem;
+	line-height: 1.4;
+	margin-bottom: 0.5rem;
+}
+
+.project-item a {
+	font-family: 'NeueMontreal-Book';
+	color: #9BC995;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.project-item a:hover {
+	color: #ffffff;
+}
+
+.project-card {
+    background-color: rgba(17, 17, 17, 0.95);
+    margin: 10px auto 2rem;
+    padding: 20px;
+    width: 90%;
+    max-width: 700px;
+    border: #fff solid 1px;
+    border-radius: 1px;
+}
+
+.project-card.with-image {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.project-card img {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.project-card-content {
+    flex: 1;
+}
+
+.project-card h3 {
+    margin-bottom: 10px;
+}
+
+.project-card hr {
+    margin: 10px 0;
+}
+
+.project-card p {
+    margin-top: 10px;
+}
+
+/* ////////////////////////////////// Contact Modal Styles */
+.contact-container {
+	padding: 20px;
+}
+
+.email-link-container {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.email-link {
+	display: inline-block;
+	margin: 20px 0;
+	padding: 10px 20px;
+	border: #fff solid 1px;
+	background-color: none;
+	text-decoration: none;
+	transition: background-color 0.5s ease;
+	color: #fff;
+	transition: color 0.5s ease;
+	transition: border-color 0.5s ease;
+}
+
+.email-link:hover {
+	background-color: #ffffff;
+	color: #000;
+	border-color: #000;
+}
+
+/* 
+	////////////////////////////////// Mobile-specific styles ////////////////////////////////// 
+*/
+@media screen and (max-width: 600px) {
+	.modal-content {
+		width: 95%;
+		margin: 5% auto;
+	}
+	
+	.projects-container {
+		max-height: 80vh;
+	}
+
+	.modal-content h2 {
+		font-size: 2rem;
+	}
+
+	.project-item h3 {
+		font-size: 1.5rem;
+	}
+
+	.project-card.with-image {
+        flex-direction: column;
+    }
+
+    .project-card img {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 20px;
+    }
+
+	.email-link-container {
+		flex-direction: column;
+		align-items: start;
+		gap: 10px;
+	}
+}
