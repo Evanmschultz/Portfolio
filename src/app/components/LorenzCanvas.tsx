@@ -135,10 +135,12 @@ export default function LorenzCanvas() {
     setIsVisible(true)
 
     window.addEventListener('resize', handleResize)
+    window.addEventListener('orientationchange', handleResize)
 
     // Cleanup function
     return () => {
       window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId)
       }
