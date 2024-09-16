@@ -60,7 +60,7 @@ export default function Home() {
                   onClick={(e) => {
                     e.preventDefault()
                     if (item === "site's lorenz js") {
-                      window.open('https://github.com/evanmschultz/Portfolio/blob/main/static/js/animation.js', '_blank')
+                      window.open('https://github.com/evanmschultz/Portfolio/blob/vanilla-js/static/js/animation.js', '_blank')
                     } else {
                       handleModalOpen(item)
                     }
