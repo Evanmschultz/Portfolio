@@ -63,7 +63,7 @@ The vanilla JS version provides a simpler setup without the need for a build pro
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
 - [Three.js](https://threejs.org/)
-- [TypeScript](https://www.typescriptlang.org/)`
+- [TypeScript](https://www.typescriptlang.org/)
 
 ## Browser Compatibility
 
